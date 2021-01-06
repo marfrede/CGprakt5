@@ -44,9 +44,9 @@ bool Terrain::load(const char* HeightMap, const char* DetailMap1, const char* De
 	for (int x = 0; x < img->width(); x++) {
 		for (int y = 0; y < img->height(); y++) {
 			// Texturkoordinate
-			int u, v = 0;
-			u = x / img->width();
-			v = y / img->height();
+			float u, v = 0.0f;
+			u = (float) x / img->width();
+			v = (float) y / img->height();
 			VB.addTexcoord0(u, v); // mixmap
 
 			// Farbe (Höhe)
@@ -72,7 +72,7 @@ bool Terrain::load(const char* HeightMap, const char* DetailMap1, const char* De
 			pos.Y *= 1.0;
 			// !!Skalierung muss im shader passieren!!
 
-			// Hinzuf�gen Vertex
+			// Hinzufügen Vertex
 			VB.addVertex(pos.X, pos.Y, pos.Z);
 
 			// Berechnung Indizes
