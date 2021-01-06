@@ -41,8 +41,14 @@ Color Color::operator+(const Color& c) const
 
 Color& Color::operator+=(const Color& c)
 {
-    this->R += c.R;
-    this->G += c.G;
-    this->B += c.B;
-    return *this;
+	this->R += c.R;
+	this->G += c.G;
+	this->B += c.B;
+	return *this;
+}
+
+std::ostream& operator<<(std::ostream& strm, const Color& C) {
+	return strm << "{"
+		<< "R: " << C.R << ", G:" << C.G << ", B:" << C.B
+		<< "} ";
 }

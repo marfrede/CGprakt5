@@ -16,6 +16,7 @@ public:
     Color operator*(const float Factor) const;
     Color operator+(const Color& c) const;
     Color& operator+=(const Color& c);
+    friend std::ostream& operator<<(std::ostream& strm, const Color& C);
 
 };
 
