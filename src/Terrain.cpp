@@ -38,15 +38,19 @@ bool Terrain::load(const char* HeightMap, const char* DetailMap1, const char* De
 	RGBImage::SobelFilter(sobel, *img, 10.0f);
 	sobel.saveToDisk("D:\\\\frede\\\\Documents\\\\SCHOOL\\\\HS OSNA\\\\7. Semester WiSe21\\\\CG\\\\cgprakt5\\\\assets\\\\mixmapExec.bmp");
 	cout << "finished sobel" << endl;
+
+	this->MixTex.create(sobel);
 	//cout << "w,h: " << img->width() << ", " << img->height() << endl;
 	for (int x = 0; x < img->width(); x++) {
 		for (int y = 0; y < img->height(); y++) {
 			// Texturkoordinate
-			VB.addTexcoord0(0, 0);
+			int u, v = 0;
+			u = x / img->width();
+			v = y / img->height();
+			VB.addTexcoord0(u, v); // mixmap
 
-			// Farbe
+			// Farbe (Höhe)
 			Color color = img->getPixelColor(x, y);
-			VB.addColor(Color(1.0f, 0.0f, 0.0f)); // keine Auswirkung
 
 			// Berechnung Vertex
 			//cout << endl;
