@@ -34,6 +34,10 @@ bool Terrain::load(const char* HeightMap, const char* DetailMap1, const char* De
 	int index = 0;
 	Texture texture(HeightMap);
 	const RGBImage* img = texture.getRGBImage();
+	RGBImage sobel(img->width(), img->height());
+	RGBImage::SobelFilter(sobel, *img, 10.0f);
+	sobel.saveToDisk("D:\\\\frede\\\\Documents\\\\SCHOOL\\\\HS OSNA\\\\7. Semester WiSe21\\\\CG\\\\cgprakt5\\\\assets\\\\mixmapExec.bmp");
+	cout << "finished sobel" << endl;
 	//cout << "w,h: " << img->width() << ", " << img->height() << endl;
 	for (int x = 0; x < img->width(); x++) {
 		for (int y = 0; y < img->height(); y++) {
