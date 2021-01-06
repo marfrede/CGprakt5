@@ -59,16 +59,19 @@ RGBImage& RGBImage::SobelFilter(RGBImage& dst, const RGBImage& src, float factor
 			Color v(0.0f, 0.0f, 0.0f);
 			for (int j = 0; j < 3; j++) {
 				for (int i = 0; i < 3; i++) {
-					u += src.getPixelColor(x - i - 1, y - j - 1) * k[i][j];
-					u += src.getPixelColor(x - i - 1, y - j - 1) * kT[i][j];
+					if (x - i - 1 > 0 && y - j - 1 > 0) {
+						u += src.getPixelColor(x - i - 1, y - j - 1) * k[i][j];
+						v += src.getPixelColor(x - i - 1, y - j - 1) * kT[i][j];
+					}
 				}
 			}
-			//Color s = (u * u) + (v * v);
-			Color s(0, 0, 0);
+			Color s = (u * u) + (v * v);
 			s.R = sqrtf(s.R);
 			s.G = sqrtf(s.G);
 			s.B = sqrtf(s.B);
-			s = s * factor;
+			s = s * factor;/*
+			if (s.R != 0 || s.G != 0 || s.B != 0)
+				std::cout << s << std::endl;*/
 			dst.setPixelColor(x, y, s);
 		}
 	}
