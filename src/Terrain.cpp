@@ -38,8 +38,8 @@ bool Terrain::load(const char* HeightMap, const char* DetailMap1, const char* De
 	RGBImage::SobelFilter(sobel, *img, 10.0f);
 	sobel.saveToDisk("D:\\\\frede\\\\Documents\\\\SCHOOL\\\\HS OSNA\\\\7. Semester WiSe21\\\\CG\\\\cgprakt5\\\\assets\\\\mixmapExec.bmp");
 	cout << "finished sobel" << endl;
-
 	this->MixTex.create(sobel);
+
 	//cout << "w,h: " << img->width() << ", " << img->height() << endl;
 	for (int x = 0; x < img->width(); x++) {
 		for (int y = 0; y < img->height(); y++) {
@@ -186,7 +186,7 @@ Vector Terrain::avgNormal(const RGBImage* img, const Vector pos) {
 	Vector avgNormal = nA + nB + nC + nD + nE + nF;
 	avgNormal = avgNormal * (1.0f / avgNormal.length());
 	//cout << "normale: " << avgNormal << endl;
-	return avgNormal;
+	return -avgNormal;
 }
 
 void Terrain::control(double diffMouseX, double diffMouseY) {
