@@ -12,6 +12,7 @@ TerrainShader::TerrainShader(const std::string& AssetDirectory) : PhongShader(fa
     
     MixTexLoc = getParameterID( "MixTex");
     ScalingLoc = getParameterID( "Scaling");
+    kLoc = getParameterID("k");
     
     for(int i=0; i<DETAILTEX_COUNT; i++)
     {
@@ -34,6 +35,7 @@ void TerrainShader::activate(const BaseCamera& Cam) const
         activateTex(DetailTex[i], DetailTexLoc[i], slot++);
     
     setParameter(ScalingLoc, Scaling);
+    setParameter(kLoc, 100.0f); // todo
 }
 
 void TerrainShader::deactivate() const

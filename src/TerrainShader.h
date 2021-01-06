@@ -9,36 +9,38 @@
 class TerrainShader : public PhongShader
 {
 public:
-    enum {
-        DETAILTEX0=0,
-        DETAILTEX1,
-        DETAILTEX_COUNT
-    };
-    
-    TerrainShader(const std::string& AssetDirectory);
-    virtual ~TerrainShader() {}
-    virtual void activate(const BaseCamera& Cam) const;
-    virtual void deactivate() const;
-    
-    const Texture* detailTex(unsigned int idx) const { assert(idx<DETAILTEX_COUNT); return DetailTex[idx]; }
-    const Texture* mixTex() const { return MixTex; }
+	enum {
+		DETAILTEX0 = 0,
+		DETAILTEX1,
+		DETAILTEX_COUNT
+	};
 
-    void detailTex(unsigned int idx, const Texture* pTex) { assert(idx<DETAILTEX_COUNT); DetailTex[idx] = pTex; }
-    void mixTex(const Texture* pTex) { MixTex = pTex; }
+	TerrainShader(const std::string& AssetDirectory);
+	virtual ~TerrainShader() {}
+	virtual void activate(const BaseCamera& Cam) const;
+	virtual void deactivate() const;
 
-    void scaling(const Vector& s) { Scaling = s; }
-    const Vector& scaling() const { return Scaling; }
+	const Texture* detailTex(unsigned int idx) const { assert(idx < DETAILTEX_COUNT); return DetailTex[idx]; }
+	const Texture* mixTex() const { return MixTex; }
+
+	void detailTex(unsigned int idx, const Texture* pTex) { assert(idx < DETAILTEX_COUNT); DetailTex[idx] = pTex; }
+	void mixTex(const Texture* pTex) { MixTex = pTex; }
+
+	void scaling(const Vector& s) { Scaling = s; }
+	const Vector& scaling() const { return Scaling; }
 
 private:
-    void activateTex(const Texture* pTex, GLint Loc, int slot) const;
+	void activateTex(const Texture* pTex, GLint Loc, int slot) const;
 
-    const Texture* MixTex;
-    const Texture* DetailTex[DETAILTEX_COUNT];
-    Vector Scaling;
-    // shader locations
-    GLint MixTexLoc;
-    GLint DetailTexLoc[DETAILTEX_COUNT];
-    GLint ScalingLoc;
+	const Texture* MixTex;
+	const Texture* DetailTex[DETAILTEX_COUNT];
+	Vector Scaling;
+
+	// shader locations
+	GLint MixTexLoc;
+	GLint DetailTexLoc[DETAILTEX_COUNT];
+	GLint ScalingLoc;
+	GLint kLoc;
 };
 
 #endif /* TerrainShader_hpp */
