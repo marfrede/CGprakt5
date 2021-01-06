@@ -27,6 +27,8 @@ public:
     
     const Vector& size() const { return Size; }
     void size(const Vector& s) { Size = s; }
+    
+    void control(double diffMouseX, double diffMouseY);
 protected:
     void applyShaderParameter();
     Vector avgNormal(const RGBImage* img, const Vector pos);

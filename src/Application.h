@@ -34,6 +34,9 @@ protected:
     ModelList Models;
     GLFWwindow* pWindow;
     Terrain* pTerrain;
+    
+    double oldMouseX;
+    double oldMouseY;
 };
 
 #endif /* Application_hpp */

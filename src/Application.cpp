@@ -75,6 +75,29 @@ void Application::update(float dtime)
 {
 	// Exercise 1
 	// TODO: Add keyboard & mouse input queries for terrain scaling ..
+    
+    if (glfwGetKey(this->pWindow, GLFW_KEY_S) == GLFW_PRESS) {
+        
+        double xPos, yPos, diffMouseX, diffMouseY; //x-Position der Maus auf der Bildebene
+        glfwGetCursorPos(pWindow, &xPos, &yPos);
+        if(oldMouseX == 0 && oldMouseY == 0) {
+            diffMouseX = 0;
+            diffMouseY = 0;
+        } else {
+            diffMouseX = oldMouseX - xPos;
+            diffMouseY = oldMouseY - yPos;
+        }
+        //std::cout << "xPos: " << xPos << std::endl;
+        //std::cout << "oldMouseX: " << oldMouseX << std::endl;
+        //std::cout << "diffMouseX: " << diffMouseX << std::endl;
+        pTerrain->control(diffMouseX, diffMouseY);
+        oldMouseX = xPos;
+        oldMouseY = yPos;
+    } else {
+        oldMouseX = 0;
+        oldMouseY = 0;
+    }
+    //this->steer(forwardBackward * dtime , leftRight * dtime );
 
 	Cam.update();
 }

@@ -180,3 +180,10 @@ Vector Terrain::avgNormal(const RGBImage* img, const Vector pos) {
 	//cout << "normale: " << avgNormal << endl;
 	return avgNormal;
 }
+
+void Terrain::control(double diffMouseX, double diffMouseY) {
+    Size.X -= diffMouseX * 0.001;
+    Size.Y += diffMouseY * 0.001;
+    Size.Z -= diffMouseX * 0.001;
+    cout << diffMouseX << endl;
+}

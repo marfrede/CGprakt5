@@ -8,6 +8,7 @@
 
 #include "Model.h"
 #include "phongshader.h"
+#include "float.h"
 #include <list>
 
 using namespace std;
