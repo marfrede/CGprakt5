@@ -23,7 +23,6 @@ Color Color::operator*(const Color& c) const
 
 Color Color::operator*(const float Factor) const
 {
-	std::cout << this->R << ", " << this->G << ", " << this->B << std::endl;
 	return Color(
 		this->R * Factor,
 		this->G * Factor,

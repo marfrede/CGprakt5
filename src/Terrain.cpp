@@ -64,7 +64,7 @@ bool Terrain::load(const char* HeightMap, const char* DetailMap1, const char* De
 			pos.Y *= 1.0;
 			// !!Skalierung muss im shader passieren!!
 
-			// Hinzufügen Vertex
+			// Hinzufï¿½gen Vertex
 			VB.addVertex(pos.X, pos.Y, pos.Z);
 
 			// Berechnung Indizes
@@ -185,5 +185,5 @@ void Terrain::control(double diffMouseX, double diffMouseY) {
     Size.X -= diffMouseX * 0.001;
     Size.Y += diffMouseY * 0.001;
     Size.Z -= diffMouseX * 0.001;
-    cout << diffMouseX << endl;
+    // cout << diffMouseX << endl;
 }
