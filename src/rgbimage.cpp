@@ -102,7 +102,7 @@ struct BmpHeader {
 	uint32_t pixelDataOffset = 54;
 };
 
-bool RGBImage::saveToDisk(const char* Filename)
+bool RGBImage::saveToDisk(const char* Filename) const
 {
 	FILE* imageFile = fopen(Filename, "wb");
 	if (imageFile == NULL) {
