@@ -97,7 +97,6 @@ void Application::update(float dtime)
         oldMouseX = 0;
         oldMouseY = 0;
     }
-    //this->steer(forwardBackward * dtime , leftRight * dtime );
 
 	Cam.update();
 }
