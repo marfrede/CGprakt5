@@ -202,7 +202,7 @@ Vector Terrain::avgNormal(const RGBImage* img, const Vector pos) {
 		cout << "nC: " << nC << endl;
 		cout << "nD: " << nD << endl;
 		cout << "nE: " << nE << endl;
-		cout << "avgNormal: " << avgNormal << endl;
+		cout << "avgNormal: " << avgNormal << endl << endl << endl;
 	}
 	return -avgNormal;
 }
