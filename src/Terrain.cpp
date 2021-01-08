@@ -171,32 +171,34 @@ Vector Terrain::avgNormal(const RGBImage* img, const Vector pos) {
 	if (eR0 && e0A) {
 		vRA = VecXZ(pos.X + 1, pos.X + wH + 1, pos.Z + hH + 1, pos.Z + 1);
 	}
-	cout << "v0A: " << v0A << endl;
-	cout << "v0B: " << v0B << endl;
-	cout << "vL0: " << vL0 << endl;
-	cout << "vR0: " << vR0 << endl;
-	cout << "vRA: " << vRA << endl;
-	cout << "vLB: " << vLB << endl;
-	cout << endl;
 	//get normals
 	if (eL0 && e0B) {
 		nA = (pos - vLB).cross(pos - v0B);
 		nF = (pos - vL0).cross(pos - vLB);
-		cout << "nA: " << nA << endl;
-		cout << "nF: " << nF << endl;
 	}
 	if (e0B && eR0) {
 		nB = (pos - v0B).cross(pos - vR0);
-		cout << "nB: " << nB << endl;
 	}
 	if (eR0 && e0A) {
 		nC = (pos - vR0).cross(pos - vRA);
 		nD = (pos - vRA).cross(pos - v0A);
-		cout << "nC: " << nC << endl;
-		cout << "nD: " << nD << endl;
 	}
 	if (e0A && eL0) {
 		nE = (pos - v0A).cross(pos - vL0);
+	}
+	if (v0A.Y != 0 || v0A.Y != 0 || v0A.Y != 0 || v0A.Y != 0 || v0A.Y != 0 || v0A.Y != 0){
+		cout << "v0A: " << v0A << endl;
+		cout << "v0B: " << v0B << endl;
+		cout << "vL0: " << vL0 << endl;
+		cout << "vR0: " << vR0 << endl;
+		cout << "vRA: " << vRA << endl;
+		cout << "vLB: " << vLB << endl;
+		cout << endl;
+		cout << "nA: " << nA << endl;
+		cout << "nF: " << nF << endl;
+		cout << "nB: " << nB << endl;
+		cout << "nC: " << nC << endl;
+		cout << "nD: " << nD << endl;
 		cout << "nE: " << nE << endl;
 	}
 	Vector avgNormal = nA + nB + nC + nD + nE + nF;
