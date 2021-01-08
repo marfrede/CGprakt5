@@ -23,9 +23,9 @@ void main()
 
     // Exercise 1
     // TODO: apply scaling on terrain model..
-    vec4 ScaledPos = VertexPos * vec4(Scaling.x, Scaling.y, Scaling.z, 1.0f) ;
+    vec4 ScaledPos = VertexPos * vec4(Scaling.xyz, 1.0f);
     Position = (ModelMat * ScaledPos).xyz;
-    Normal = (ModelMat * vec4(VertexNormal.xyz,0)).xyz;
+    Normal = (ModelMat * vec4(VertexNormal.xyz,0) /* * vec4(Scaling.xyz, 1.0f)*/ ).xyz;
     Texcoord = VertexTexcoord;
     gl_Position = ModelViewProjMat * ScaledPos;
 }
