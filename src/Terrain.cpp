@@ -45,8 +45,8 @@ bool Terrain::load(const char* HeightMap, const char* DetailMap1, const char* De
 		for (int y = 0; y < img->height(); y++) {
 			// Texturkoordinate
 			float u, v = 0.0f;
-			u = (float) x / img->width();
-			v = (float) y / img->height();
+			u = (float)x / img->width();
+			v = (float)y / img->height();
 			VB.addTexcoord0(u, v); // mixmap
 
 			// Farbe (Höhe)
@@ -186,7 +186,9 @@ Vector Terrain::avgNormal(const RGBImage* img, const Vector pos) {
 	if (e0A && eL0) {
 		nE = (pos - v0A).cross(pos - vL0);
 	}
-	if (v0A.Y != 0 || v0B.Y != 0 || vL0.Y != 0 || vR0.Y != 0 || vLB.Y != 0 || vRA.Y != 0){
+	Vector avgNormal = nA + nB + nC + nD + nE + nF;
+	avgNormal = avgNormal * (1.0f / avgNormal.length());
+	if (v0A.Y != 0 || v0B.Y != 0 || vL0.Y != 0 || vR0.Y != 0 || vLB.Y != 0 || vRA.Y != 0) {
 		cout << "v0A: " << v0A << endl;
 		cout << "v0B: " << v0B << endl;
 		cout << "vL0: " << vL0 << endl;
@@ -200,17 +202,14 @@ Vector Terrain::avgNormal(const RGBImage* img, const Vector pos) {
 		cout << "nC: " << nC << endl;
 		cout << "nD: " << nD << endl;
 		cout << "nE: " << nE << endl;
+		cout << "avgNormal: " << avgNormal << endl;
 	}
-	Vector avgNormal = nA + nB + nC + nD + nE + nF;
-	cout << "avgNormal: " << avgNormal << endl;
-	avgNormal = avgNormal * (1.0f / avgNormal.length());
-	cout << "normale: " << avgNormal << endl;
 	return -avgNormal;
 }
 
 void Terrain::control(double diffMouseX, double diffMouseY) {
-    Size.X -= diffMouseX * 0.001;
-    Size.Y += diffMouseY * 0.001;
-    Size.Z -= diffMouseX * 0.001;
-    // cout << diffMouseX << endl;
+	Size.X -= diffMouseX * 0.001;
+	Size.Y += diffMouseY * 0.001;
+	Size.Z -= diffMouseX * 0.001;
+	// cout << diffMouseX << endl;
 }
