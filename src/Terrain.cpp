@@ -141,7 +141,7 @@ void Terrain::applyShaderParameter()
 }
 
 Vector Terrain::avgNormal(const RGBImage* img, const Vector pos) {
-#define VecXZ(x, a, b, z) Vector(x, img->getPixelColor(a,b).G, z); cout << "inside(0, 2000): " << "a: " << a << ", b: " << b;
+#define VecXZ(x, a, b, z) Vector(x, img->getPixelColor(a,b).G, z); if(a < 0 || a > 2000 || b < 0 || b > 200) cout << "inside(0, 2000): " << "a: " << a << ", b: " << b << endl;
 
 	Vector vLB(0, 0, 0), v0B(0, 0, 0), vR0(0, 0, 0), vRA(0, 0, 0), v0A(0, 0, 0), vL0(0, 0, 0); // 8er neighbours verteces => L-Left, R-Right, A-Above, B-Below. (but only 6 of them relevant bc of triangles)
 	bool e0A = false, e0B = false, eL0 = false, eR0 = false; // neighbours verteces exist?
