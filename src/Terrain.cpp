@@ -36,8 +36,8 @@ bool Terrain::load(const char* HeightMap, const char* DetailMap1, const char* De
 	const RGBImage* img = texture.getRGBImage();
 	RGBImage sobel(img->width(), img->height());
 	RGBImage::SobelFilter(sobel, *img, 10.0f);
-	sobel.saveToDisk("D:\\\\frede\\\\Documents\\\\SCHOOL\\\\HS OSNA\\\\7. Semester WiSe21\\\\CG\\\\cgprakt5\\\\assets\\\\mixmapExec.bmp");
-	cout << "finished sobel" << endl;
+	/*sobel.saveToDisk("D:\\\\frede\\\\Documents\\\\SCHOOL\\\\HS OSNA\\\\7. Semester WiSe21\\\\CG\\\\cgprakt5\\\\assets\\\\mixmapExec.bmp");
+	cout << "finished sobel" << endl;*/
 	this->MixTex.create(sobel);
 
 	//cout << "w,h: " << img->width() << ", " << img->height() << endl;
@@ -141,7 +141,7 @@ void Terrain::applyShaderParameter()
 }
 
 Vector Terrain::avgNormal(const RGBImage* img, const Vector pos) {
-#define VecXZ(x, a, b, z) Vector(x, img->getPixelColor(a,b).G, z);
+#define VecXZ(x, a, b, z) Vector(x, img->getPixelColor(a,b).G, z); cout << "inside(0, 2000): " << "a: " << a << ", b: " << b;
 
 	Vector vLB(0, 0, 0), v0B(0, 0, 0), vR0(0, 0, 0), vRA(0, 0, 0), v0A(0, 0, 0), vL0(0, 0, 0); // 8er neighbours verteces => L-Left, R-Right, A-Above, B-Below. (but only 6 of them relevant bc of triangles)
 	bool e0A = false, e0B = false, eL0 = false, eR0 = false; // neighbours verteces exist?
