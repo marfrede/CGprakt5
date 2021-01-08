@@ -64,7 +64,11 @@ bool Terrain::load(const char* HeightMap, const char* DetailMap1, const char* De
 			//cout << "pos " << pos << endl;
 
 			// Berechnung Normale
-			VB.addNormal(this->avgNormal(img, pos)); // calc normals before scaling
+			Vector normal = this->avgNormal(img, pos);
+			if (normal.Y < 0.99) {
+				cout << "normal: " << normal << endl;
+			}
+			VB.addNormal(normal); // calc normals before scaling
 
 			// !!Skalierung muss im shader passieren!!
 			pos.X *= 10 / (float)img->width();
@@ -167,25 +171,38 @@ Vector Terrain::avgNormal(const RGBImage* img, const Vector pos) {
 	if (eR0 && e0A) {
 		vRA = VecXZ(pos.X + 1, pos.X + wH + 1, pos.Z + hH + 1, pos.Z + 1);
 	}
-
+	cout << "v0A: " << v0A << endl;
+	cout << "v0B: " << v0B << endl;
+	cout << "vL0: " << vL0 << endl;
+	cout << "vR0: " << vR0 << endl;
+	cout << "vRA: " << vRA << endl;
+	cout << "vLB: " << vLB << endl;
+	cout << endl;
 	//get normals
 	if (eL0 && e0B) {
 		nA = (pos - vLB).cross(pos - v0B);
 		nF = (pos - vL0).cross(pos - vLB);
+		cout << "nA: " << nA << endl;
+		cout << "nF: " << nF << endl;
 	}
 	if (e0B && eR0) {
 		nB = (pos - v0B).cross(pos - vR0);
+		cout << "nB: " << nB << endl;
 	}
 	if (eR0 && e0A) {
 		nC = (pos - vR0).cross(pos - vRA);
 		nD = (pos - vRA).cross(pos - v0A);
+		cout << "nC: " << nC << endl;
+		cout << "nD: " << nD << endl;
 	}
 	if (e0A && eL0) {
 		nE = (pos - v0A).cross(pos - vL0);
+		cout << "nE: " << nE << endl;
 	}
 	Vector avgNormal = nA + nB + nC + nD + nE + nF;
+	cout << "avgNormal: " << avgNormal << endl;
 	avgNormal = avgNormal * (1.0f / avgNormal.length());
-	//cout << "normale: " << avgNormal << endl;
+	cout << "normale: " << avgNormal << endl;
 	return -avgNormal;
 }
 
