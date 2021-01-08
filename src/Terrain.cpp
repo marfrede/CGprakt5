@@ -186,7 +186,7 @@ Vector Terrain::avgNormal(const RGBImage* img, const Vector pos) {
 	if (e0A && eL0) {
 		nE = (pos - v0A).cross(pos - vL0);
 	}
-	if (v0A.Y != 0 || v0A.Y != 0 || v0A.Y != 0 || v0A.Y != 0 || v0A.Y != 0 || v0A.Y != 0){
+	if (v0A.Y != 0 || v0B.Y != 0 || vL0.Y != 0 || vR0.Y != 0 || vLB.Y != 0 || vRA.Y != 0){
 		cout << "v0A: " << v0A << endl;
 		cout << "v0B: " << v0B << endl;
 		cout << "vL0: " << vL0 << endl;
